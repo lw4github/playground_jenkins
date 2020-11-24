@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('stage1') {
       steps {
-        echo 'Hello world'
+        echo 'echo "The build number is $BUILD_NUMBER"'
       }
     }
 
