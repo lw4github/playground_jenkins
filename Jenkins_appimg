@@ -1,0 +1,22 @@
+pipeline {
+  agent any
+  
+  stages {
+        stage ("verify branch') {
+            steps {
+            echo "$GIT_BRANCH"
+            }
+        }
+        stage 'Docker Build') {
+            steps {
+                pwsh(script: 'docker images -a')
+                pwsh (script: """
+                    cd "C:\MyDev_DevOps\playground_jenkins"
+                    docker images -a
+                    docker build -t mytmptest .
+                    dcoker images -a
+                 """)
+            }
+        }
+    }
+ }
