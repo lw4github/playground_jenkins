@@ -1,12 +1,22 @@
 pipeline {
-    agent {
-        docker { image 'node:14-alpine' }
-    }
-    stages {
-        stage('Test') {
+  agent any
+  
+  stages {
+        stage ("verify branch') {
             steps {
-                sh 'node --version'
+            echo "$GIT_BRANCH"
+            }
+        }
+        stage 'Docker Build') {
+            steps {
+                pwsh(script: 'docker images -a')
+                pwsh (script: """
+                    cd "C:\MyDev_DevOps\BuildingModernCICDPipelineWithJenkins\azure-voting-app-redis\azure-vote"
+                    docker images -a
+                    docker build -t mytmptest .
+                    dcoker images -a
+                 """)
             }
         }
     }
-}
+ }
