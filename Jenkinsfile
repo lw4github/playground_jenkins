@@ -11,10 +11,11 @@ pipeline {
             steps {
                 pwsh(script: 'docker images -a')
                 pwsh (script: """
-                    cd 'BuildingModernCICDPipelineWithJenkins/azure-voting-app-redis'
-                    docker images -a
-                    docker build -t mytmptest .
-                    dcoker images -a
+                     pwd
+                     cd 'BuildingModernCICDPipelineWithJenkins/azure-voting-app-redis'
+                    //docker images -a
+                    //docker build -t mytmptest .
+                    //dcoker images -a
                  """)
             }
         }
